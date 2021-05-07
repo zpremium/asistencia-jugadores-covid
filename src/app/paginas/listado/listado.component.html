@@ -1,0 +1,47 @@
+<body> <!-- with angular material -->
+  <div class="container">
+    <mat-card class="containerCard">
+      <mat-card-title class="titol">Datos alumno</mat-card-title>
+
+
+      <mat-form-field appearance="outline" >
+        <mat-label>Nombre completo</mat-label>
+        <input [ngModel]="nombre.value" #nombre (ngModelChange)="comprobarNombre($event)" matInput placeholder="Intro nombre y apellidos">
+        <mat-icon [class]=" nombreWrong " matSuffix>person</mat-icon>
+        <mat-hint class="error" *ngIf="(nombreWrong === 'error')">El formato debe ser entre 1 y 30 caracteres</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Telefono</mat-label>
+        <input [ngModel]="telefono.value" (ngModelChange)="comprobarTelefono($event)" placeholder="Intro telefono" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" min="1" maxlength="9" size="9" matInput type="text" #telefono>
+        <mat-icon [class]=" phoneWrong " matSuffix>phone</mat-icon>
+        <mat-hint class="error" *ngIf="(phoneWrong === 'error')">El formato debe ser 9 digitos</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>DNI</mat-label>
+        <input [ngModel]="dni.value" (ngModelChange)="comprobarDNI($event)" matInput type="text" minlength="9" maxlength="10"  #dni>
+        <mat-icon [class]=" dniWrong " matSuffix>badge</mat-icon>
+        <mat-hint class="error" *ngIf="(dniWrong === 'error')">El DNI o NIE introducido es incorrecto</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Correo electrónico</mat-label>
+        <input [ngModel]="email.value" (ngModelChange)="comprobarEmail($event)" matInput type="text" #email>
+        <mat-icon [class]=" emailWrong " matSuffix>mail</mat-icon>
+        <mat-hint class="error" *ngIf="(emailWrong === 'error')">El email introducido es incorrecto</mat-hint>
+      </mat-form-field>
+
+      <app-listado-rol class="selector" (rol) ="rolDefinido($event)"></app-listado-rol>
+      <app-jornadas class="selector" (jornada)="jornadaDefinida($event)"></app-jornadas>
+
+      <button class="verd" mat-raised-button color="primary" (click)="crearAlumno(nombre.value,telefono.value,dni.value,email.value)">ADD</button>
+
+      <!-- <button class="verd" mat-raised-button color="primary" (click)="crearAlumno(nombre.value,apellido1.value,apellido2.value,telefono.value,dni.value,email.value)">
+        ADD
+      </button>-->
+    </mat-card>
+
+
+  </div>
+</body>

@@ -1,0 +1,16 @@
+<body>
+  <h2 class="text-center">Jornada a filtrar</h2>
+  <mat-card class="card">
+      <div class="flex columns aligned-items-center">
+          <app-jornadas (jornada)="filtrarPorJornada($event)"></app-jornadas>
+      </div>
+  </mat-card>
+
+  <h2 class="text-center">Lista de alumnos</h2>
+  <mat-card class="card">
+      <div class="flex columns aligned-items-center">
+          <app-listado-alumnos [jornada]="jornadaAFiltrar"></app-listado-alumnos>
+      </div>
+  </mat-card>
+
+</body>
